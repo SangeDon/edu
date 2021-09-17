@@ -1,0 +1,2 @@
+org.springframeword.boot.autoconfigure.EnableAutoConfiguration=\
+cn.sangedon.config.MyAutoConfiguration
