@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app>
+    <servlet>
+        <servlet-name>sangedon</servlet-name>
+        <servlet-class>cn.sangedon.minicat.server.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sangedon</servlet-name>
+        <url-pattern>/sangedon</url-pattern>
+    </servlet-mapping>
+</web-app>

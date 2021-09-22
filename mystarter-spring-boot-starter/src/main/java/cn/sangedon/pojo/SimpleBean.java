@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author dongliangqiong 2021-09-11 15:32
  */
+@Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "simplebean")
 public class SimpleBean {
