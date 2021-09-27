@@ -1,5 +1,6 @@
-package cn.sangedon.minicat.server;
+package cn.sangedon.minicat.server.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,7 +17,7 @@ public class StaticResouceUtil {
      */
     public static String getAbsolutrPath(String path) {
         String absolutePath = StaticResouceUtil.class.getResource("/").getPath();
-        return absolutePath.replaceAll("\\\\", "/") + path;
+        return absolutePath.replaceAll("\\\\", File.separator) + path;
     }
 
     public static void outputStaticResource(InputStream is, OutputStream os) throws IOException {

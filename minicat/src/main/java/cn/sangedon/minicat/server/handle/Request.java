@@ -1,4 +1,4 @@
-package cn.sangedon.minicat.server;
+package cn.sangedon.minicat.server.handle;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package cn.sangedon.minicat.server;
+package cn.sangedon.minicat.server.util;
 
 /**
  * http协议工具类，主要提供响应头信息
@@ -13,7 +13,7 @@ public class HttpProtocolUtil {
     }
 
     public static String getHttpHeader404() {
-        String str404 = "<h1>404</h1>";
+        String str404 = "<h1>404 NOT FOUND</h1>";
         return "HTTP/1.1 NOT FOUND \n" +
                "Content-Type: text/html \n" +
                "Content-Length: " + str404.getBytes().length + " \n" +

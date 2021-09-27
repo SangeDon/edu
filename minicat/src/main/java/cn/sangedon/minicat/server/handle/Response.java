@@ -1,5 +1,7 @@
-package cn.sangedon.minicat.server;
+package cn.sangedon.minicat.server.handle;
 
+import cn.sangedon.minicat.server.util.HttpProtocolUtil;
+import cn.sangedon.minicat.server.util.StaticResouceUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,9 +28,14 @@ public class Response {
      * 获取制定路径静态资源
      * @param path
      */
-    public void outputHtml(String path) throws IOException {
+    public void outputHtml(String path, Boolean abs) throws IOException {
         // 获取静态资源路径
-        String absoluteResourcePath = StaticResouceUtil.getAbsolutrPath(path);
+        String absoluteResourcePath = "";
+        if (abs) {
+            absoluteResourcePath = path;
+        } else {
+            absoluteResourcePath = StaticResouceUtil.getAbsolutrPath(path);
+        }
 
         // 输入静态资源路径
         File file = new File(absoluteResourcePath);

@@ -1,4 +1,7 @@
-package cn.sangedon.minicat.server;
+package cn.sangedon.minicat.server.servlet;
+
+import cn.sangedon.minicat.server.handle.Request;
+import cn.sangedon.minicat.server.handle.Response;
 
 /**
  * @author dongliangqiong 2021-09-22 20:18
@@ -21,7 +24,6 @@ public abstract class HttpServlet implements MiniServlet {
     @Override
     public void service(Request request, Response response) throws Exception {
         if ("GET".equalsIgnoreCase(request.getMethod())) {
-            Thread.sleep(5000);
             doGet(request, response);
         } else {
             doPost(request, response);
