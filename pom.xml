@@ -12,5 +12,10 @@
 
     <modules>
         <module>mini-springboot</module>
+        <module>rpc-api</module>
+        <module>rpc-provider</module>
+        <module>rpc-api</module>
+        <module>rpc-provider</module>
+        <module>rpc-consumer</module>
     </modules>
 </project>
