@@ -1,8 +1,12 @@
 package cn.sangedon.edu.kafka.service;
 
+import cn.sangedon.edu.kafka.config.ThirdDataImportConfig;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,15 +16,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class Consumer {
 
-    @KafkaListener(topics = {"cache-message"})
-    public void consumer(ConsumerRecord<?, ?> consumerRecord) {
-        //判断是否为null
-        Optional<?> kafkaMessage = Optional.ofNullable(consumerRecord.value());
-        System.out.println(">>>>>>>>>> record = " + kafkaMessage);
-        if (kafkaMessage.isPresent()) {
-            //得到Optional实例中的值
-            Object message = kafkaMessage.get();
-            System.err.println("消费消息:" + message);
-        }
+    @Autowired
+    private ThirdDataImportConfig thirdDataImportConfig;
+
+    private AtomicInteger sum = new AtomicInteger();
+
+    @KafkaListener(topicPattern = "cache-message-.*")
+    public void ackListener(ConsumerRecord consumerRecord, Acknowledgment ack) throws InterruptedException {
+        System.out.println("sum: " + sum.incrementAndGet());
+
+        Optional.ofNullable(consumerRecord.value()).ifPresent(record -> {
+            System.out.println(">>>>>>>>>> record = " + record);
+        });
+        ack.acknowledge();
     }
 }

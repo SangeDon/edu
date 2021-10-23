@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: 192.168.100.10:9092
+    listener:
+      ack-mode: manual_immediate
+    consumer:
+      group-id: kafka-data-import-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 10
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+thirddata:
+  enable: false
+  policeId: '024025'
