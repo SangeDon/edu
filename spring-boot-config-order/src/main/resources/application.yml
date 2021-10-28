@@ -1,0 +1,4 @@
+config:
+  path: /Users/dongliangqiong/Documents/work/HaiZhiBDP/workspace/application-common.properties
+server:
+  port: 9090
