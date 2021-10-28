@@ -1,6 +1,7 @@
 package cn.sangedon.rpc.consumer.proxy;
 
 import cn.sangedon.rpc.consumer.client.RpcClient;
+import cn.sangedon.rpc.consumer.config.RpcHost;
 import cn.sangedon.rpc.service.common.RpcRequest;
 import cn.sangedon.rpc.service.common.RpcResponse;
 import com.alibaba.fastjson.JSON;
@@ -15,7 +16,7 @@ import java.util.UUID;
  * @author dongliangqiong 2021-10-23 14:53
  */
 public class RpcClientProxy {
-    public static Object createProxy(Class serviceClass) {
+    public static Object createProxy(Class serviceClass, RpcHost rpcHost) {
         return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[] {serviceClass}, new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -27,7 +28,8 @@ public class RpcClientProxy {
                 rpcRequest.setParameters(args);
                 RpcClient rpcClient = null;
                 try {
-                    rpcClient = new RpcClient("127.0.0.1", 9999);
+                    System.out.println("当前调用的服务端为：" + rpcHost);
+                    rpcClient = new RpcClient(rpcHost.getHost(), rpcHost.getPort());
                     Object responseMsg = rpcClient.send(JSON.toJSONString(rpcRequest));
                     RpcResponse rpcResponse = JSON.parseObject(responseMsg.toString(), RpcResponse.class);
                     if (rpcResponse.getError() != null) {
