@@ -17,5 +17,6 @@
         <module>rpc-api</module>
         <module>rpc-provider</module>
         <module>rpc-consumer</module>
+        <module>zookeeper</module>
     </modules>
 </project>

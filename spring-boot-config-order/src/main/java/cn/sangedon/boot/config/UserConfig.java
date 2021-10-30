@@ -1,9 +1,10 @@
 package cn.sangedon.boot.config;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * TODO
@@ -11,12 +12,11 @@ import org.springframework.context.annotation.Configuration;
  * @author dongliangqiong 2021-10-26 21:01
  */
 @Data
+@ToString
 @Configuration
+@PropertySource("${config.path}")
 @ConfigurationProperties(prefix = "joif.uc")
 public class UserConfig {
-    @Autowired
-    private DemoConfig demoConfig;
-
     /**
      * 企业域
      */

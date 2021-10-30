@@ -1,6 +1,5 @@
 package cn.sangedon.boot.controller;
 
-import cn.sangedon.boot.config.DemoConfig;
 import cn.sangedon.boot.config.UserConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("demo")
 public class DemoController {
     @Autowired
-    private DemoConfig demoConfig;
-
-    @Autowired
     private UserConfig userConfig;
 
     @GetMapping("index")
     public String getIndex() {
-        return demoConfig.toString();
+        return userConfig.toString();
     }
 }
