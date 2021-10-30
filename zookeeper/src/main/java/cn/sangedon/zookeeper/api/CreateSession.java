@@ -1,4 +1,4 @@
-package cn.sangedon.zookeeper;
+package cn.sangedon.zookeeper.api;
 
 import java.util.concurrent.CountDownLatch;
 import org.apache.zookeeper.WatchedEvent;

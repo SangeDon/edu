@@ -1,4 +1,4 @@
-package cn.sangedon.zookeeper;
+package cn.sangedon.zookeeper.api;
 
 import java.util.concurrent.CountDownLatch;
 import org.apache.zookeeper.CreateMode;
@@ -19,7 +19,7 @@ public class CreateNode implements Watcher {
     private static ZooKeeper zooKeeper;
 
     public static void main(String[] args) throws Exception {
-        zooKeeper = new ZooKeeper("192.168.100.10:2181", 5000, new CreateNode());
+        zooKeeper = new ZooKeeper("47.93.244.54:2181", 5000, new CreateNode());
 //        System.out.println(zooKeeper.getState());
         countDownLatch.await();
         createNodeSync();
