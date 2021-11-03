@@ -1,6 +1,11 @@
 package cn.sangedon.edu.kafka.service;
 
 import cn.sangedon.edu.kafka.config.ThirdDataImportConfig;
+import cn.sangedon.edu.kafka.data.config.BeanUtil;
+import cn.sangedon.edu.kafka.data.service.ThirdCommitFormData;
+import com.alibaba.fastjson.JSONObject;
+import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -21,10 +26,19 @@ public class Consumer {
 
     private AtomicInteger sum = new AtomicInteger();
 
-    @KafkaListener(topicPattern = "cache-message-.*")
-    public void ackListener(ConsumerRecord consumerRecord, Acknowledgment ack) throws InterruptedException {
+    @KafkaListener(topicPattern = "cache-message-single-.*")
+    public void ackListener(ConsumerRecord consumerRecord, Acknowledgment ack) throws InterruptedException, IOException {
         System.out.println("sum: " + sum.incrementAndGet());
+        Map<String, Object> fieldMap = BeanUtil.beanToMap(JSONObject.parse((String) consumerRecord.value()));
+        ThirdCommitFormData thirdCommitFormData = BeanUtil.mapToBean(fieldMap, ThirdCommitFormData.class);
+        System.out.println(thirdCommitFormData);
+        ack.acknowledge();
+    }
 
+    @KafkaListener(topicPattern = "cache-message-list-.*")
+    public void ackListenerList(ConsumerRecord consumerRecord, Acknowledgment ack) throws InterruptedException, IOException {
+        System.out.println("sum: " + sum.incrementAndGet());
+        Map<String, Object> fieldMap = BeanUtil.beanToMap(JSONObject.parse((String) consumerRecord.value()));
         Optional.ofNullable(consumerRecord.value()).ifPresent(record -> {
             System.out.println(">>>>>>>>>> record = " + record);
         });

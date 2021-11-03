@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author dongliangqiong 2021-10-23 11:38
- * @Description TODO
+ * @Description Rpc 服务提供端
  */
 @SpringBootApplication
 public class ServerBootStrapApplication implements CommandLineRunner {
@@ -24,7 +24,7 @@ public class ServerBootStrapApplication implements CommandLineRunner {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                rpcServer.startServer("127.0.0.1", 9999);
+                rpcServer.startServer();
             }
         }).start();
     }

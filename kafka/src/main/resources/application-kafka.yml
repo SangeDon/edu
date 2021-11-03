@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: haizhi
     password: hai123zhi456
-    url: jdbc:mysql://39.106.114.130:3306/xk?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&allowMultiQueries=true
+    jdbc-url: jdbc:mysql://39.106.114.130:3306/digital_police?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&allowMultiQueries=true
   kafka:
     bootstrap-servers: 47.93.244.54:9092
     #    bootstrap-servers: 192.168.100.10:9092
@@ -36,7 +36,7 @@ data:
    fm_f_617b93d812f75205854feed4,p.risk_level AS fm_f_617b93d812f75205854feed5,p.data_sources AS fm_f_617b93d812f75205854feed6,p
    .living_area_id AS fm_f_617b93d812f75205854feed7,p.smx AS fm_f_617b93d812f75205854feed8,p.smy AS fm_f_617b93d812f75205854feed9,p
    .is_checked AS fm_f_617b93d812f75205854feeda,p.unionKey AS fm_f_617b93d812f75205854feedb from tb_key_person p limit 0, 20"
-  fieldList: [fm_f_617b93d812f75205854feebf,fm_f_617b93d812f75205854feec0,fm_f_617b93d812f75205854feec1,fm_f_617b93d812f75205854feec2,fm_f_617b93d812f75205854feec3,fm_f_617b93d812f75205854feec4,fm_f_617b93d812f75205854feec5,fm_f_617b93d812f75205854feec6,fm_f_617b93d812f75205854feec7,fm_f_617b93d812f75205854feec8,fm_f_617b93d812f75205854feec9,fm_f_617b93d812f75205854feeca,fm_f_617b93d812f75205854feecb,fm_f_617b93d812f75205854feecc,fm_f_617b93d812f75205854feecd,fm_f_617b93d812f75205854feece,fm_f_617b93d812f75205854feecf,fm_f_617b93d812f75205854feed0,fm_f_617b93d812f75205854feed2,fm_f_617b93d812f75205854feed3,fm_f_617b93d812f75205854feed4,fm_f_617b93d812f75205854feed5,fm_f_617b93d812f75205854feed6,fm_f_617b93d812f75205854feed7,fm_f_617b93d812f75205854feed8,fm_f_617b93d812f75205854feed9,fm_f_617b93d812f75205854feeda,fm_f_617b93d812f75205854feedb]
+  #  fieldList: [fm_f_617b93d812f75205854feebf,fm_f_617b93d812f75205854feec0,fm_f_617b93d812f75205854feec1,fm_f_617b93d812f75205854feec2,fm_f_617b93d812f75205854feec3,fm_f_617b93d812f75205854feec4,fm_f_617b93d812f75205854feec5,fm_f_617b93d812f75205854feec6,fm_f_617b93d812f75205854feec7,fm_f_617b93d812f75205854feec8,fm_f_617b93d812f75205854feec9,fm_f_617b93d812f75205854feeca,fm_f_617b93d812f75205854feecb,fm_f_617b93d812f75205854feecc,fm_f_617b93d812f75205854feecd,fm_f_617b93d812f75205854feece,fm_f_617b93d812f75205854feecf,fm_f_617b93d812f75205854feed0,fm_f_617b93d812f75205854feed2,fm_f_617b93d812f75205854feed3,fm_f_617b93d812f75205854feed4,fm_f_617b93d812f75205854feed5,fm_f_617b93d812f75205854feed6,fm_f_617b93d812f75205854feed7,fm_f_617b93d812f75205854feed8,fm_f_617b93d812f75205854feed9,fm_f_617b93d812f75205854feeda,fm_f_617b93d812f75205854feedb]
   childrenFields:
     - fieldId: aaa
       sql: SELECT * FROM tb_relation_household
