@@ -26,7 +26,7 @@ public class Consumer {
 
     private AtomicInteger sum = new AtomicInteger();
 
-    @KafkaListener(topicPattern = "cache-message-single-.*")
+    @KafkaListener(topicPattern = "cache-message-test-.*")
     public void ackListener(ConsumerRecord consumerRecord, Acknowledgment ack) throws InterruptedException, IOException {
         System.out.println("sum: " + sum.incrementAndGet());
         Map<String, Object> fieldMap = BeanUtil.beanToMap(JSONObject.parse((String) consumerRecord.value()));
@@ -35,7 +35,7 @@ public class Consumer {
         ack.acknowledge();
     }
 
-    @KafkaListener(topicPattern = "cache-message-list-.*")
+    @KafkaListener(topicPattern = "cache-message-quick-.*")
     public void ackListenerList(ConsumerRecord consumerRecord, Acknowledgment ack) throws InterruptedException, IOException {
         System.out.println("sum: " + sum.incrementAndGet());
         Map<String, Object> fieldMap = BeanUtil.beanToMap(JSONObject.parse((String) consumerRecord.value()));

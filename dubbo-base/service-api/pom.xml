@@ -7,7 +7,7 @@
     <artifactId>service-api</artifactId>
 
     <parent>
-        <artifactId>base</artifactId>
+        <artifactId>dubbo-base</artifactId>
         <groupId>cn.sangedon.dubbo</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>

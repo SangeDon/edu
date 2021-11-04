@@ -1,9 +1,10 @@
 package cn.sangedon.dubbo.service.api;
 
 /**
- * TODO
+ * dubbo服务接口
  *
  * @author dongliangqiong 2021-11-04 13:56
  */
-public class HelloService {
+public interface HelloService {
+    String sayHello(String hello);
 }
