@@ -60,7 +60,7 @@ public class RpcServer implements DisposableBean {
 
             ChannelFuture channelFuture = bootstrap.bind(ip, port).sync();
             channelFuture.channel().closeFuture().sync();
-            zkClient.createEphemeral(ZkServer.BASE_PATH + ip + "/" + port);
+            zkClient.createPersistent(ZkServer.BASE_PATH + ip + "/" + port, true);
             System.out.println("服务启动成功");
         } catch (Exception e) {
             e.printStackTrace();

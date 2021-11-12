@@ -61,13 +61,29 @@ public class ThirdDataProducer {
             Map<String, String> unionKey = childrenField.getUnionKey();
             sql += " where ";
             for (Entry<String, String> entry : unionKey.entrySet()) {
-                sql += entry.getKey() + "='" + map.get(entry.getValue()) + "' ";
+                Object fieldValue = map.get(entry.getValue());
+                sql = fillChildrenSql(sql, entry.getKey(), fieldValue);
             }
+        }
+        if (sql.endsWith("and")) {
+            sql = sql.substring(0, sql.lastIndexOf("and")).trim();
         }
         List<Map<String, Object>> maps = dataRepo.executeSql(sql);
         Map<String, Object> hashMap = new HashMap<>();
         hashMap.put("form_id", childrenField.getFormId());
         hashMap.put("field_map", maps);
         map.put(childrenField.getFieldId(), hashMap);
+    }
+
+    private String fillChildrenSql(String sql, String field, Object fieldValue) {
+        if (fieldValue instanceof String) {
+            String[] values = ((String) fieldValue).split(",");
+            if (values != null && values.length > 1) {
+                sql += field + " in ('" + String.join("','", values) + "') and";
+            } else {
+                sql += field + "='" + fieldValue + "' and";
+            }
+        }
+        return sql;
     }
 }
