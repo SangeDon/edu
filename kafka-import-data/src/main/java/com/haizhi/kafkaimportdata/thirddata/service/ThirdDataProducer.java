@@ -37,8 +37,10 @@ public class ThirdDataProducer {
         List<ThirdCommitFormData> list = new ArrayList<>();
         for (Map<String, Object> map : mainMap) {
             List<ChildrenField> childrenFields = dataConfig.getChildrenFields();
-            for (ChildrenField childrenField : childrenFields) {
-                handleChildForm(map, childrenField);
+            if (childrenFields != null && childrenFields.size() > 0) {
+                for (ChildrenField childrenField : childrenFields) {
+                    handleChildForm(map, childrenField);
+                }
             }
             ThirdCommitFormData thirdCommitFormData = new ThirdCommitFormData();
             thirdCommitFormData.setFieldMap(map);
@@ -65,8 +67,9 @@ public class ThirdDataProducer {
                 sql = fillChildrenSql(sql, entry.getKey(), fieldValue);
             }
         }
-        if (sql.endsWith("and")) {
-            sql = sql.substring(0, sql.lastIndexOf("and")).trim();
+        sql = clearSql(sql);
+        if (!sql.contains("where")) {
+            return;
         }
         List<Map<String, Object>> maps = dataRepo.executeSql(sql);
         Map<String, Object> hashMap = new HashMap<>();
@@ -75,7 +78,24 @@ public class ThirdDataProducer {
         map.put(childrenField.getFieldId(), hashMap);
     }
 
+    private String clearSql(String sql) {
+        sql = sql.trim();
+
+        if (sql.endsWith("and")) {
+            sql = sql.substring(0, sql.lastIndexOf("and")).trim();
+        }
+
+        if (sql.endsWith("where")) {
+            sql = sql.substring(0, sql.lastIndexOf("where")).trim();
+        }
+
+        return sql;
+    }
+
     private String fillChildrenSql(String sql, String field, Object fieldValue) {
+        if (fieldValue == null) {
+            return sql;
+        }
         if (fieldValue instanceof String) {
             String[] values = ((String) fieldValue).split(",");
             if (values != null && values.length > 1) {

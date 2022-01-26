@@ -1,22 +1,13 @@
 package cn.sangedon.edu.kafka;
 
-import cn.sangedon.edu.kafka.data.service.Producer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
-public class KafkaApplication implements CommandLineRunner {
-    @Autowired
-    private Producer producer;
-
+@EnableKafka
+public class KafkaApplication {
     public static void main(String[] args) {
         SpringApplication.run(KafkaApplication.class, args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        // producer.run();
     }
 }
